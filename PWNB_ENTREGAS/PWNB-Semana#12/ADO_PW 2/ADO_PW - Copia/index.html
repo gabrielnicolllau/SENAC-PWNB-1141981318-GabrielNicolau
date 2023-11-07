@@ -19,17 +19,17 @@
         <form id="cliente-form">
             <div class="container">
 
-                <div class="input-group">
+                <div class="entrada-de-dados">
                     <label for="nome">Nome:</label>
                     <input type="text" name="nome" id="nome" required>
                 </div>
 
-                <div class="input-group">
+                <div class="entrada-de-dados">
                     <label for "sobrenome">Sobrenome:</label>
                     <input type="text" name="sobrenome" id="sobrenome" required>
                 </div>
 
-                <div class="input-group input-cliente">
+                <div class="entrada-de-dados input-cliente">
                     <label for="tipo-cliente">Tipo de Cliente:</label>
                     <select name="tipo-cliente" id="tipo-cliente" required>
                         <option value="ouro">Ouro</option>
@@ -38,32 +38,32 @@
                     </select>
                 </div>
 
-                <div class="input-group">
+                <div class="entrada-de-dados">
                     <label for="data-nascimento">Data Nascimento:</label>
                     <input type="date" name="data-nascimento" id="data-nascimento" required>
                 </div>
 
-                <div class="input-group">
+                <div class="entrada-de-dados">
                     <label for="cep">CEP:</label>
                     <input type="text" name="cep" id="cep" required>
                 </div>
 
-                <div class="input-group">
+                <div class="entrada-de-dados">
                     <label for="cidade">Cidade:</label>
                     <input type="text" name="cidade" id="cidade" required>
                 </div>
 
-                <div class="input-group">
+                <div class="entrada-de-dados">
                     <label for="endereco">Endereço:</label>
                     <input type="text" name="endereco" id="endereco" required>
                 </div>
 
-                <div class="input-group">
+                <div class="entrada-de-dados">
                     <label for="numero">Número:</label>
                     <input type="number" name="numero" id="numero" required>
                 </div>
 
-                <div class="input-group btn-incluir">
+                <div class="entrada-de-dados btn-incluir">
                     <input type="button" value="Salvar" id="salvar" onclick="salvarCliente()" class="btn-form">
                     <input type="button" value="Limpar" id="limpar" onclick="limparCampos()" class="btn-form">
                     <input type="button" value="Alterar" id="alterar" style="display: none" onclick="alterarCliente()" class="btn-form">
@@ -72,10 +72,11 @@
             </div>
         </form>
 
+        <!-- Seção de clientes cadastrados -->
         <div class="clientes-cadastrados">
             <h2>Clientes Cadastrados</h2>
             <ul id="clientes">
-
+                <!-- Os clientes cadastrados serão exibidos aqui dinamicamente -->
             </ul>
         </div>
     </main>
