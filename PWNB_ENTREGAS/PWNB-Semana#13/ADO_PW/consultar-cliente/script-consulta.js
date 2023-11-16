@@ -22,7 +22,7 @@ function carregarClientes() {
         Endereço: ${cliente.endereco}<br>
         Número: ${cliente.numero}<br>
         <button type="button" onclick="editarCliente(${index})">Editar</button>
-        <button type="button" onclick="excluirClienteConsulta(${index})">Excluir</button>
+        <button type="button" onclick="excluirClienteConsulta(${index})">Excluir</button><br><br>
       `;
         listaClientes.appendChild(itemLista);
     });
@@ -43,95 +43,7 @@ function excluirClienteConsulta(index) {
     carregarClientes(); // Recarrega a lista na página
 }
 
-// Verifica se há um cliente para editar ao carregar a página
-//window.onload = function () {
-//   const clienteIndex = localStorage.getItem('clienteIndex');
-//  if (clienteIndex !== null) {
-//     localStorage.removeItem('clienteIndex'); // Remove o índice do cliente da localStorage
-//    editarCliente(clienteIndex); // Redireciona para a página de cadastro com o índice do cliente a ser editado
-//} else {
-//    carregarClientes(); // Carrega a lista normalmente se não houver cliente para editar
-//}
-//};
-
-function editarCliente(index) {
-    if (clientes && clientes.length > index && index >= 0) {
-        const cliente = clientes[index];
-        const listaClientes = document.getElementById("clientes");
-
-        // Criar campos de edição dinamicamente
-        const camposEdicao = document.createElement("div");
-        camposEdicao.innerHTML = `
-            <input type="text" value="${cliente.nome}">
-            <input type="text" value="${cliente.sobrenome}">
-            <input type="text" value="${cliente.tipoCliente}">
-            <input type="date" value="${cliente.dataNascimento}">
-            <input type="text" value="${cliente.cep}">
-            <input type="text" value="${cliente.cidade}">
-            <input type="text" value="${cliente.endereco}">
-            <input type="number" value="${cliente.numero}">
-            <button onclick="salvarEdicao(${index})">Salvar</button>
-            <button onclick="cancelarEdicao(${index})">Cancelar</button>
-        `;
-
-        // Substituir o item da lista pelo formulário de edição
-        const itemLista = listaClientes.childNodes[index];
-        itemLista.innerHTML = '';
-        itemLista.appendChild(camposEdicao);
-    } else {
-        console.error('Índice do cliente fora do intervalo válido.');
-    }
-}
-
-
-function salvarEdicao(index) {
-    const listaClientes = document.getElementById("clientes");
-    const camposEdicao = listaClientes.childNodes[index].querySelector('div');
-
-    // Coletar os novos valores dos campos de edição
-    const novoNome = camposEdicao.querySelector('input:nth-child(1)').value;
-    const novoSobrenome = camposEdicao.querySelector('input:nth-child(2)').value;
-    const novoTipoCliente = camposEdicao.querySelector('input:nth-child(3)').value;
-    const novaDataNascimento = camposEdicao.querySelector('input:nth-child(4)').value;
-    const novoCep = camposEdicao.querySelector('input:nth-child(5)').value;
-    const novaCidade = camposEdicao.querySelector('input:nth-child(6)').value;
-    const novoEndereco = camposEdicao.querySelector('input:nth-child(7)').value;
-    const novoNumero = camposEdicao.querySelector('input:nth-child(8)').value;
-
-    // Atualize os dados do cliente no array 'clientes'
-    clientes[index].nome = novoNome;
-    clientes[index].sobrenome = novoSobrenome;
-    clientes[index].tipoCliente = novoTipoCliente;
-    clientes[index].dataNascimento = novaDataNascimento;
-    clientes[index].cep = novoCep;
-    clientes[index].cidade = novaCidade;
-    clientes[index].endereco = novoEndereco;
-    clientes[index].numero = novoNumero;
-
-    // Atualize visualmente a lista de clientes
-    const novoItemLista = document.createElement("li");
-    novoItemLista.innerHTML = `
-        Nome: ${novoNome}<br>
-        Sobrenome: ${novoSobrenome}<br>
-        Tipo de Cliente: ${novoTipoCliente}<br>
-        Data de Nascimento: ${novaDataNascimento}<br>
-        CEP: ${novoCep}<br>
-        Cidade: ${novaCidade}<br>
-        Endereço: ${novoEndereco}<br>
-        Número: ${novoNumero}<br>
-        <button type="button" onclick="editarCliente(${index})">Editar</button>
-        <button type="button" onclick="excluirCliente(${index})">Excluir</button>
-    `;
-    listaClientes.replaceChild(novoItemLista, camposEdicao);
-}
-
-// Verifica se há um cliente para editar ao carregar a página
+// carregar cliente
 window.onload = function () {
-    const clienteIndex = localStorage.getItem('clienteIndex');
-    if (clienteIndex !== null) {
-        localStorage.removeItem('clienteIndex'); // Remove o índice do cliente da localStorage
-        editarCliente(clienteIndex); // Redireciona para a página de cadastro com o índice do cliente a ser editado
-    } else {
-        carregarClientes(); // Carrega a lista normalmente se não houver cliente para editar
-    }
+    carregarClientes(); // Carrega a lista de clientes quando a página é carregada
 };
