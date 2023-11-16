@@ -12,6 +12,11 @@ header {
     padding: 10px 0;
 }
 
+ul {
+    list-style: none;
+    padding: 0;
+}
+
 footer {
     background-color: #183F3C;
     color: #fff;
