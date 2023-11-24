@@ -1,8 +1,8 @@
 class Cliente {
-  constructor(nome, sobrenome, tipoCliente, dataNascimento, cep, cidade, endereco, numero) {
+  constructor(nome, sobrenome, ufCliente, dataNascimento, cep, cidade, endereco, numero) {
     this.nome = nome;
     this.sobrenome = sobrenome;
-    this.tipoCliente = tipoCliente;
+    this.ufCliente = ufCliente;
     this.dataNascimento = dataNascimento;
     this.cep = cep;
     this.cidade = cidade;
@@ -14,12 +14,14 @@ class Cliente {
 // Declaração de variáveis
 const nome = document.querySelector("#nome");
 const sobrenome = document.querySelector("#sobrenome");
-const tipoCliente = document.querySelector("#tipo-cliente");
+const ufCliente = document.querySelector("#uf-cliente");
 const dataNascimento = document.querySelector("#data-nascimento");
 const cep = document.querySelector("#cep");
 const cidade = document.querySelector("#cidade");
 const endereco = document.querySelector("#endereco");
 const numero = document.querySelector("#numero");
+
+let clientesSalvos = localStorage.getItem('clientes');
 
 // Regex para validar o nome
 const regNome = new RegExp("[A-z ]{6,100}");
@@ -30,8 +32,8 @@ const regSobrenome = new RegExp("[A-z ]{2,100}");
 // Regex para validar o CEP
 const regCep = new RegExp("[0-9]{5}-[0-9]{3}");
 
-// Regex para validar o tipo de cliente
-const regTipoCliente = new RegExp("^(ouro|prata|bronze)$");
+// Regex para validar o uf do cliente
+const regUfCliente = new RegExp("^(al|am|ap|ba|ce|df|es|go|ma|mg|ms|mt|pa|pb|pe|pi|pr|rj|rn|ro|rr|rs|sc|se|sp|to)$");
 
 // Regex para validar a data de nascimento
 const regDataNascimento = /^(19\d{2}|20\d{2})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
@@ -59,10 +61,10 @@ function validar() {
     return false;
   }
 
-  // Valida o tipo de cliente
-  if (!regTipoCliente.test(tipoCliente.value)) {
-    alert("Selecione um tipo de cliente válido!");
-    tipoCliente.focus();
+  // Valida o uf de cliente
+  if (!regUfCliente.test(ufCliente.value)) {
+    alert("Selecione um uf de cliente válido!");
+    ufCliente.focus();
     return false;
   }
 
@@ -86,7 +88,7 @@ function preencherFormulario(index) {
   const cliente = clientes[index];
   document.getElementById("nome").value = cliente.nome;
   document.getElementById("sobrenome").value = cliente.sobrenome;
-  document.getElementById("tipo-cliente").value = cliente.tipoCliente;
+  document.getElementById("uf-cliente").value = cliente.ufCliente;
   document.getElementById("data-nascimento").value = cliente.dataNascimento;
   document.getElementById("cep").value = cliente.cep;
   document.getElementById("cidade").value = cliente.cidade;
@@ -100,19 +102,18 @@ function preencherFormulario(index) {
 function salvarCliente() {
   const nomeCliente = nome.value;
   const sobrenomeCliente = sobrenome.value;
-  const tipoClienteCliente = tipoCliente.value;
+  const ufClienteCliente = ufCliente.value;
   const dataNascimentoCliente = dataNascimento.value;
   const cepCliente = cep.value;
   const cidadeCliente = cidade.value;
   const enderecoCliente = endereco.value;
   const numeroCliente = numero.value;
 
-  if (nomeCliente && sobrenomeCliente && tipoClienteCliente && dataNascimentoCliente && cepCliente && cidadeCliente && enderecoCliente && numeroCliente) {
-    const novoCliente = new Cliente(nomeCliente, sobrenomeCliente, tipoClienteCliente, dataNascimentoCliente, cepCliente, cidadeCliente, enderecoCliente, numeroCliente);
+  if (nomeCliente && sobrenomeCliente && ufClienteCliente && dataNascimentoCliente && cepCliente && cidadeCliente && enderecoCliente && numeroCliente) {
+    const novoCliente = new Cliente(nomeCliente, sobrenomeCliente, ufClienteCliente, dataNascimentoCliente, cepCliente, cidadeCliente, enderecoCliente, numeroCliente);
     adicionarCliente(novoCliente);
 
     // Verifica se existem clientes na localStorage
-    let clientesSalvos = localStorage.getItem('clientes');
     if (!clientesSalvos) {
       clientesSalvos = []; // Inicializa como uma matriz vazia se não houver dados salvos
     } else {
@@ -150,4 +151,6 @@ function limparCampos() {
   document.getElementById("alterar").style.display = "none";
   document.getElementById("salvar").style.display = "block";
 }
+
+console.log(clientesSalvos);
 
