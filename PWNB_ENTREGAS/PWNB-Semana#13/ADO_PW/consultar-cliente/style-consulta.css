@@ -21,18 +21,6 @@ ul {
   padding: 0;
 }
 
-footer {
-  background-color: #183f3c;
-  color: #fff;
-  text-align: center;
-  font-size: 14px;
-  padding: 10px 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-top: 20px;
-}
-
 section {
   display: flex;
   flex-direction: column;
@@ -174,4 +162,16 @@ h3 {
 .edit-btns button {
   width: 100px;
   height: 30px;
+}
+
+footer {
+  background-color: #183f3c;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 20px;
 }
